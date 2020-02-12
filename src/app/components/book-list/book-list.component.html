@@ -1,0 +1,25 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>
+                    <!-- This is property binding -->
+                    <img [src]="book.imageUrl" alt="blank_image" height="60">
+                </td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.description}}</td>
+                <td>{{book.unitPrice | currency: 'EUR'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
