@@ -12,7 +12,8 @@
         <tbody>
             <tr *ngFor="let book of books">
                 <td>
-                    <img src="http://placehold.it/250x300" alt="blank_image" height="60">
+                    <!-- This is property binding -->
+                    <img [src]="book.imageUrl" alt="blank_image" height="60">
                 </td>
                 <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
