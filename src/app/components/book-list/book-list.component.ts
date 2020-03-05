@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../../common/book';
 import { BookService } from 'src/app/services/book.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -12,21 +12,24 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class BookListComponent implements OnInit {
   books: Book[];
   @Input() templateSelected = 'grid';
-  constructor(private bookService: BookService) {}
+  currentCategoryId: number;
+  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     // this.selectView();
-    this.listBooks();
+    this.activatedRoute.paramMap.subscribe(() => {
+      this.listBooks();
+    });
   }
 
   listBooks() {
-    this.bookService.getBooks().subscribe(data => {
+    this.currentCategoryId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.bookService.getBooks(this.currentCategoryId).subscribe((data) => {
       this.books = data;
     });
   }
 
   selectView() {
-    let name = 'grid';
     switch (this.templateSelected) {
       case 'grid':
       case 'list':
@@ -35,7 +38,6 @@ export class BookListComponent implements OnInit {
         this.templateSelected = 'grid';
         break;
     }
-    let nameUrl = `./book-${name}.component.html`;
-
+    let nameUrl = `./book-${this.templateSelected}.component.html`;
   }
 }
