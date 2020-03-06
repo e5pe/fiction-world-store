@@ -12,7 +12,7 @@
 
 This project was generated with [Angular CLI][1] version 8.3.23.
 
-It is the front-end part that uses the app [bookapi][2]
+It is the front-end part that uses the api [bookapi][2].
 
 ### Tecnologies
 
