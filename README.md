@@ -1,27 +1,51 @@
-# FictionWorldStore
+# Table of Contents
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+- [Table of Contents](#table-of-contents)
+  - [FictionWorldStore](#fictionworldstore)
+    - [Tecnologies](#tecnologies)
+    - [Instalation and launch](#instalation-and-launch)
+      - [Running unit tests](#running-unit-tests)
+      - [Running end-to-end tests](#running-end-to-end-tests)
+    - [Demo](#demo)
 
-## Development server
+## FictionWorldStore
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was generated with [Angular CLI][1] version 8.3.23.
 
-## Code scaffolding
+It is the front-end part that uses the app [bookapi][2]
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Tecnologies
 
-## Build
+The tecnologies used in this project are these:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- [Angular][3]
+- [Bootstrap 4.4.1][4]
+- [jQuery][5]
+- [RxJS][6]
 
-## Running unit tests
+### Instalation and launch
+
+On development evironment run `ng serve` for a dev server. Then you can access <http://localhost:4200> to see the application running. The app will automatically reload if you change any of the source files.
+
+#### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+#### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+### Demo
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+> Not yet in the cloud, sorry :laughing:
+
+[Go back to the top](#table-of-contents)
+
+<!-- enlaces -->
+
+[1]: https://github.com/angular/angular-cli
+[2]: https://github.com/e5pe/booksapi
+[3]: https://angular.io/
+[4]: https://getbootstrap.com/docs/4.4/getting-started/introduction/
+[5]: https://github.com/jquery/jquery/tree/3.4.1
+[6]: https://github.com/ReactiveX/rxjs/tree/6.4.0
