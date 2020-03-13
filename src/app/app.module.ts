@@ -5,18 +5,20 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { BookService } from './services/book.service';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'books', component: BookListComponent },
+  { path: 'category/:id', component: BookListComponent },
+  { path: '', redirectTo: '/books', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BookListComponent,
-    SearchBoxComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent, BookListComponent, SearchBoxComponent, PageNotFoundComponent],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [BookService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
