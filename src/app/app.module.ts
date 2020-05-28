@@ -7,6 +7,7 @@ import { BookService } from './services/book.service';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BookCategoryComponent } from './components/book-category/book-category.component';
 
 const routes: Routes = [
   { path: 'books', component: BookListComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, BookListComponent, SearchBoxComponent, PageNotFoundComponent],
+  declarations: [AppComponent, BookListComponent, SearchBoxComponent, PageNotFoundComponent, BookCategoryComponent],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [BookService],
   bootstrap: [AppComponent]
