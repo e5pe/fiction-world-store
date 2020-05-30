@@ -11,24 +11,36 @@ import { BookCategory } from '../common/book-category';
 export class BookService {
   private baseUrl = 'http://localhost:9000/api/v1';
   private entity = 'books';
+  private booksUrl = `${this.baseUrl}/${this.entity}`;
   private categoryUrl = `${this.baseUrl}/bookCategory`;
   constructor(private httpClient: HttpClient) {}
 
   getBooks(categoryId: number): Observable<Book[]> {
-    let url = `${this.baseUrl}/${this.entity}`
+    let url = this.booksUrl;
     if (categoryId) {
       url += `/search/categoryid?id=${categoryId}`;
     }
+    
+    return this.getBooksList(url);
+  }
 
-    return this.httpClient.get<ResponseBooks>(url).pipe(
-      map((response: any) => response._embedded.books)
-    );
+  /**
+   * Make a call to the api and returns a list of books
+   * @param url 
+   */
+  private getBooksList(url: string): Observable<Book[]> {
+    return this.httpClient.get<ResponseBooks>(url).pipe(map((response: any) => response._embedded.books));
   }
 
   getBookCategories(): Observable<BookCategory[]> {
     return this.httpClient.get<ResponseBookCategory>(this.categoryUrl).pipe(
       map((response: any) => response._embedded.bookCategory)
     );
+  }
+
+  searchBooks(keyword: string): Observable<Book[]> {
+    const url = `${this.booksUrl}/search/searchbykeyword?title=${keyword}`;
+    return this.getBooksList(url);
   }
 }
 

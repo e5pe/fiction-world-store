@@ -13,7 +13,9 @@ export class BookListComponent implements OnInit {
   books: Book[];
   @Input() templateSelected = 'grid';
   currentCategoryId: number;
-  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute) {}
+  searchMode: boolean;
+
+  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     // this.selectView();
@@ -23,10 +25,13 @@ export class BookListComponent implements OnInit {
   }
 
   listBooks() {
-    this.currentCategoryId = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.bookService.getBooks(this.currentCategoryId).subscribe((data) => {
-      this.books = data;
-    });
+    this.searchMode = this.activatedRoute.snapshot.paramMap.has('keyword');
+
+    if (this.searchMode) {
+      this.handleSearchBooks();
+    } else {
+      this.handleListBooks();
+    }
   }
 
   selectView() {
@@ -39,5 +44,19 @@ export class BookListComponent implements OnInit {
         break;
     }
     let nameUrl = `./book-${this.templateSelected}.component.html`;
+  }
+
+  handleListBooks() {
+    this.currentCategoryId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.bookService.getBooks(this.currentCategoryId).subscribe((data) => {
+      this.books = data;
+    });
+  }
+
+  handleSearchBooks() {
+    const keyword: string = this.activatedRoute.snapshot.paramMap.get('keyword');
+    this.bookService.searchBooks(keyword).subscribe((data) => {
+      this.books = data;
+    });
   }
 }
