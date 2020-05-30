@@ -18,7 +18,7 @@
                 <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.description}}</td>
-                <td>{{book.unitPrice | currency: 'EUR'}}</td>
+                <td>{{book.unitPrice | currency: 'EUR':'.2-2':'es' }}</td>
             </tr>
         </tbody>
     </table>
