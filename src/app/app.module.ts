@@ -11,6 +11,7 @@ import { BookCategoryComponent } from './components/book-category/book-category.
 
 const routes: Routes = [
   { path: 'books', component: BookListComponent },
+  { path: 'search/:keyword', component: BookListComponent },
   { path: 'category/:id', component: BookListComponent },
   { path: '', redirectTo: '/books', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
