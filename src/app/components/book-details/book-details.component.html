@@ -7,42 +7,43 @@
             <div class="col-12 col-md-4">
                 <!-- To display the image -->
                 <div class="thumbnail">
-                    <img class="img-fluid" src="assets/images/webdevelopment/webdevelopment-101.jpg" alt="book_image">
+                    <img class="img-fluid" [src]="book.imageUrl" alt="book_image">
                 </div>
             </div>
             <div class="col-12 col-md-8">
                 <!-- To display book info -->
                 <div class="info-product">
-                    <h2 title="EL ENIGMA DE LA HABITACIÓN 622">
-                        EL ENIGMA DE LA HABITACIÓN 622
+                    <h2 title="{{book.title}}">
+                        {{book.title}}
                     </h2>
                     <div class="product-meta">
-                        <div class="author">
+                        <div class="author" *ngIf="book.author">
                             <!-- TODO Link to show all books of that author -->
                             <!-- <a href="/libros-ebooks/jol-dicker/20087034"> -->
-                            <h4 title="JOËL DICKER">
-                                JOËL DICKER
+                            <h4 title="{{book.author}}">
+                                {{book.author}}
                             </h4>
                             <!-- </a> -->
                         </div>
+                        <!-- TODO maybe isbn too? -->
                     </div>
                     <div class="data-product">
                         <div class="tags">
                             <div class="tagClass">
                                 <!-- TODO Link to books of the same category -->
-                                <a href="/libros/novela-negra/126000000">Novela negra</a>
+                                <!-- <a href="/libros/novela-negra/126000000">Novela negra</a> -->
                             </div>
                         </div>
-                        <div class="description">
-                            The description goes here...
+                        <div class="description" *ngIf="book.description">
+                            {{book.description}}
                         </div>
                     </div>
                 </div> <!-- finish info-product -->
                 <div class="priceBox">
-                    <span class="price">12,26 €</span>
+                    <span class="price">{{book.unitPrice | currency:'EUR':'symbol':'.2-2':'es'}}</span>
                 </div>
-                <div class="stock">
-                    Qty. Available: 100
+                <div class="stock" *ngIf="book.unitsStock">
+                    Qty. Available: {{book.unitsStock}}
                 </div>
 
                 <a (click)="goBack()" href="javascript:void(0)" role="button" class="btn btn-success mr-1">
@@ -52,3 +53,5 @@
                 </a>
             </div>
         </div>
+    </div>
+</div>
