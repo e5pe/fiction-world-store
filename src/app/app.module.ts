@@ -15,12 +15,14 @@ import { BookCategoryComponent } from './components/book-category/book-category.
 import localeES from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
 
 // registrar los locales con el nombre que quieras utilizar a la hora de proveer registerLocaleData(localePy, 'es'); registerLocaleData(localePt, 'pt'); registerLocaleData(localeEn, 'en') registerLocaleData(localeEsAR, 'es-Ar');
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeES, 'es');
 
 const routes: Routes = [
+  { path: 'books/:id', component: BookDetailsComponent },
   { path: 'books', component: BookListComponent },
   { path: 'search/:keyword', component: BookListComponent },
   { path: 'category/:id', component: BookListComponent },
@@ -29,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, BookListComponent, SearchBoxComponent, PageNotFoundComponent, BookCategoryComponent],
+  declarations: [AppComponent, BookListComponent, SearchBoxComponent, PageNotFoundComponent, BookCategoryComponent, BookDetailsComponent],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [BookService],
   bootstrap: [AppComponent]
