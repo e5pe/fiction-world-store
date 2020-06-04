@@ -49,6 +49,8 @@ export class BookListComponent implements OnInit {
   handleListBooks() {
     this.currentCategoryId = +this.activatedRoute.snapshot.paramMap.get('id');
     this.bookService.getBooks(this.currentCategoryId).subscribe((data) => {
+      console.table(data);
+      
       this.books = data;
     });
   }
