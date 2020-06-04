@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-book-list',
   // templateUrl: './book-list.component.html',
   templateUrl: './book-grid.component.html',
-  styleUrls: ['./book-list.component.css']
+  styleUrls: ['./book-list.component.css'],
 })
 export class BookListComponent implements OnInit {
   books: Book[];
@@ -15,7 +15,7 @@ export class BookListComponent implements OnInit {
   currentCategoryId: number;
   searchMode: boolean;
 
-  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute) { }
+  constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     // this.selectView();
@@ -48,14 +48,14 @@ export class BookListComponent implements OnInit {
 
   handleListBooks() {
     this.currentCategoryId = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.bookService.getBooks(this.currentCategoryId).subscribe((data) => {
+    this._bookService.getBooks(this.currentCategoryId).subscribe((data) => {
       this.books = data;
     });
   }
 
   handleSearchBooks() {
     const keyword: string = this.activatedRoute.snapshot.paramMap.get('keyword');
-    this.bookService.searchBooks(keyword).subscribe((data) => {
+    this._bookService.searchBooks(keyword).subscribe((data) => {
       this.books = data;
     });
   }
