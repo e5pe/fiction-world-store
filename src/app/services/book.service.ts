@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../common/book';
 import { BookCategory } from '../common/book-category';
+import { get } from 'http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookService {
   private baseUrl = 'http://localhost:9000/api/v1';
@@ -20,22 +21,27 @@ export class BookService {
     if (categoryId) {
       url += `/search/categoryid?id=${categoryId}`;
     }
-    
+
     return this.getBooksList(url);
+  }
+
+  getBook(bookId: number): Observable<Book> {
+    const bookDetailsUrl = `${this.booksUrl}/${bookId}`;
+    return this.httpClient.get<Book>(bookDetailsUrl);
   }
 
   /**
    * Make a call to the api and returns a list of books
-   * @param url 
+   * @param url
    */
   private getBooksList(url: string): Observable<Book[]> {
     return this.httpClient.get<ResponseBooks>(url).pipe(map((response: any) => response._embedded.books));
   }
 
   getBookCategories(): Observable<BookCategory[]> {
-    return this.httpClient.get<ResponseBookCategory>(this.categoryUrl).pipe(
-      map((response: any) => response._embedded.bookCategory)
-    );
+    return this.httpClient
+      .get<ResponseBookCategory>(this.categoryUrl)
+      .pipe(map((response: any) => response._embedded.bookCategory));
   }
 
   searchBooks(keyword: string): Observable<Book[]> {
@@ -44,15 +50,14 @@ export class BookService {
   }
 }
 
-
-interface ResponseBooks{
+interface ResponseBooks {
   _embedded: {
-    books: Book[]
-  }
+    books: Book[];
+  };
 }
 
 interface ResponseBookCategory {
   _embedded: {
-    bookCategory: BookCategory[]
-  }
+    bookCategory: BookCategory[];
+  };
 }
